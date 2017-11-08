@@ -1,0 +1,14 @@
+# Versions are left out on purpose in order for you to use the latest ones.
+# After the first "pip install -r", just run "pip freeze" and add the version
+# to each package in each requirements/*.txt.
+
+django-model-utils
+
+psycopg2
+Django==1.11.3
+django-allauth==0.34.0
+djangorestframework==3.7.3
+Markdown==2.6.9
+django-filter==1.1.0
+cookiecutter==1.6.0
+wagtail==1.13
