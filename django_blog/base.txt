@@ -12,3 +12,4 @@ Markdown==2.6.9
 django-filter==1.1.0
 cookiecutter==1.6.0
 wagtail==1.13
+httpie
