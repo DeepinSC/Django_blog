@@ -5,8 +5,10 @@ from django.http import Http404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+
+from permissons import IsOwnerOrReadOnly
 from models import Snippets
-from serializers import SnippetSerializer
+from serializers import SnippetSerializer,UserSerializer
 
 # Create your views here.
 
@@ -118,11 +120,28 @@ Then We go to Mixin classes. They are similar to TEMPLATES part in Django.
 What if there is a more concise way? Yes.
 """
 from rest_framework import generics
+from rest_framework import permissions
 
 class SnippetList(generics.ListCreateAPIView):
     queryset = Snippets.objects.all()
     serializer_class = SnippetSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Snippets.objects.all()
     serializer_class = SnippetSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
+from django.contrib.auth.models import User
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
