@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'snippets',
+    'blogs',
 ]
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10

@@ -179,6 +179,7 @@ class SnippetViewSet(viewsets.ModelViewSet):
     serializer_class = SnippetSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
 
+
     @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
     def highlight(self,request,*args,**kwargs):
         snippet = self.get_object()
