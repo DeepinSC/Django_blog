@@ -4,4 +4,7 @@ import views
 
 router = routers.DefaultRouter()
 router.register(r'blogs',views.BlogsViewSet)
-urlpatterns = [url(r'^', include(router.urls)),]
+urlpatterns = [
+    url(r'^api/', include(router.urls)),
+    url(r'^index/',views.index,name='index'),
+               ]
