@@ -15,25 +15,18 @@
     <title>Blogs_simple</title>
 </head>
 <body>
-    <a>Title <input name="title"></a>
-    <br>
-    <a>Author <input name="author"></a>
-    <br>
-    <a>Content <input name="content"></a>
-    <br>
-    <a>Category <input name="category"></a>
-    <br>
-    <a>Tag <input name="tag"></a>
-    <br>
 
-    <button class="btn-primary" id="b01">Submit</button>
 
+    <div>Title <input name="title"></div>
+    <div>Author <input name="author"></div>
+    <div>Content <input name="content"></div>
+    <div>Category <input name="category"></div>
+    <div>Tag <input name="tag"></div>
+
+    <button class="btn-primary" id="b01" type="submit">Submit</button>
 
     <script type="text/javascript">
         $("#b01").click(function(){
-
-            var res;
-
             $.ajax({
                 url:"http://127.0.0.1:8000/api/blogs/",
                 type:"POST",
@@ -42,11 +35,10 @@
                     author:($('input[name="author"]').val()),
                     content:($('input[name="content"]').val()),
                     category:($('input[name="category"]').val()),
-                    tag:($('input[name="tag"]').val())
+                    tag:($('input[name="tag"]').val()),
+                    csrfmiddlewaretoken:($('a[id="csrf"]').val())
                 },
                 success: function(return_value){
-                    res = return_value;
-                    alert(return_value)
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status);
@@ -55,8 +47,8 @@
             });
             return res;
         });
+    </script>
 
-        </script>
 
 </body>
 </html>

@@ -16,3 +16,4 @@ httpie
 pygments
 django-extensions
 notebook
+django-rest-auth
