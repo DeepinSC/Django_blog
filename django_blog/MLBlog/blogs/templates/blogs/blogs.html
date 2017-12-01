@@ -1,0 +1,252 @@
+{% load static %}
+
+<html lang="zh-CN"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+    <title>Blog Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/Blog%20Template%20for%20Bootstrap_files/bootstrap.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../static/Blog%20Template%20for%20Bootstrap_files/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/Blog%20Template%20for%20Bootstrap_files/blog.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!-- here are blogs from db-->
+
+            <script type="text/javascript">
+
+                    function get_data(){
+            var return_value;
+            $.ajax({
+                async:false,
+                url:"http://127.0.0.1:8000/api/blogs/",
+                type:"GET",
+                datatype:"json",
+                success:function (data) {
+                 return_value = data;
+
+             },
+             error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  console.log(textStatus.responseText);
+                  alert(XMLHttpRequest.status);
+              }
+
+          });
+            return return_value;
+    };
+
+                window.onload=function(){
+                    var blog_data = get_data();
+                    var blog_main_div = document.getElementById("blogs");
+                    for(var i=0;i<blog_data.length;i++){
+                        var blog_post_div = document.createElement("div");
+                        blog_post_div.className = "blog-post";
+
+                        var title = document.createElement("h2");
+                        title.className = "blog-post-title";
+                        title.append(blog_data[i].title);
+
+                        var modify_time = document.createElement("p");
+                        modify_time.className = "blog-post-meta";
+                        modify_time.append(blog_data[i].modify_time);
+                        modify_time.append(" by: ");
+                        var author = document.createElement("a");
+                        author.append(blog_data[i].author);
+                        modify_time.appendChild(author);
+
+                        var content = document.createElement("p");
+                        content.append(blog_data[i].content);
+
+                        var category = document.createElement("p");
+                        category.className = "blog-post-meta";
+                        category.append(blog_data[i].category);
+
+                        var tag = document.createElement("p");
+                        tag.className = "blog-post-meta";
+                        tag.append(blog_data[i].tag);
+
+                        blog_post_div.appendChild(title);
+                        blog_post_div.appendChild(modify_time);
+                        blog_post_div.appendChild(content);
+                        blog_post_div.appendChild(category);
+                        blog_post_div.appendChild(tag);
+
+                        blog_main_div.appendChild(blog_post_div);
+                    }
+                }
+            </script>
+
+
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item" href="#">New features</a>
+          <a class="blog-nav-item" href="#">Press</a>
+          <a class="blog-nav-item" href="#">New hires</a>
+          <a class="blog-nav-item" href="#">About</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">The Bootstrap Blog</h1>
+        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main" id = "blog_main">
+
+            <div id ="blogs" ></div>
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Sample blog post</h2>
+            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+
+            <p>This.</p>
+            <hr>
+            <p>Cum \magnis <a href="#">dis parturient montes</a>,
+ n.</p>
+            <blockquote>
+              <p>Cur <strong>N</strong> o.</p>
+            </blockquote>
+            <p>E<em>se</em> mo</p>
+            <h2>Heading</h2>
+            <p>Vi</p>
+            <h3>Sub-heading</h3>
+            <p>Cum s.</p>
+            <pre><code>Example code block</code></pre>
+            <p>A.</p>
+            <h3>Sub-heading</h3>
+            <p>Cu.</p>
+            <ul>
+              <li>Prae.</li>
+              <li>D.</li>
+              <li>N.</li>
+            </ul>
+            <p>Do.</p>
+            <ol>
+              <li>Ves.</li>
+              <li>C.</li>
+              <li>Mae.</li>
+            </ol>
+            <p>Cr.</p>
+          </div><!-- /.blog-post -->
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Another blog post</h2>
+            <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
+
+            <p>Cus <a href="#">dintes</a>,n.</p>
+            <blockquote>
+              <p>Cuis</strong> or.</p>
+            </blockquote>
+            <p>Ea <em>sa</em> mor.</p>
+            <p>Vs.</p>
+          </div><!-- /.blog-post -->
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">New feature</h2>
+            <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
+
+            <p>Cu.</p>
+            <ul>
+              <li>Pr.</li>
+              <li>Do.</li>
+              <li>Nu.</li>
+            </ul>
+            <p>Eti.</p>
+            <p>Do.</p>
+          </div><!-- /.blog-post -->
+
+          <nav>
+            <ul class="pager">
+              <li><a href="#">Previous</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Eta</em> mor.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../static/Blog%20Template%20for%20Bootstrap_files/jquery.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../static/Blog%20Template%20for%20Bootstrap_files/bootstrap.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../static/Blog%20Template%20for%20Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+  
+
+
+</body></html>

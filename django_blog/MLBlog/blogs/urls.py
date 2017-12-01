@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^index/',views.index,name='index'),
     url(r'^login/',views.login,name='login'),
+    url(r'^blogs/',views.blogs,name='blogs'),
                ]

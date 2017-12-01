@@ -28,3 +28,7 @@ def index(request):
 @csrf_exempt
 def login(request):
     return render(request,'blogs/login.html')
+
+@csrf_exempt
+def blogs(request):
+    return render(request,'blogs/blogs.html')
