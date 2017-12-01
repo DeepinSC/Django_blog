@@ -23,7 +23,7 @@ class BlogsViewSet(viewsets.ModelViewSet):
 
 @csrf_exempt
 def index(request):
-    return render_to_response('blogs/index.html',{},RequestContext(request))
+    return render(request,'blogs/index.html')
 
 @csrf_exempt
 def login(request):

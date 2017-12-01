@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="Signin%20Template%20for%20Bootstrap_files/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
@@ -16,8 +15,8 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="http://127.0.0.1:8000/rest-auth/login/">
-        {%csrf_token%}
+    <form class="form-signin" id="form01" method="post" action="http://127.0.0.1:8000/api/rest-auth/login/">
+        {% csrf_token %}
         <h2 class="form-signin-heading">Please Sign in here!</h2>
         <input name="username" class="form-control" placeholder="Username" type="text">
         <input name="password" class="form-control" placeholder="Password" type="password">
@@ -26,24 +25,22 @@
             <input value="remember-me" type="checkbox"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" id="b01">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="b01">Sign in</button>
     </form>
 
 
-<!--
         <script type="text/javascript">
         $("#b01").click(function(){
             $.ajax({
-                url:"http://127.0.0.1:8000/rest-auth/login",
+                url:"http://127.0.0.1:8000/api/rest-auth/login/",
                 type:"POST",
-                data:{
-                    username:($('input[id="inputUsername"]').val()),
-                    password:($('input[id="inputPassword"]').val())
-                },
+                dataType:"text",
+                data:$('#form01').serialize(),
                 success: function(return_value){
-                   window.location.href='http://www.jb51.net';
+                   window.location.href='http://www.baidu.com';
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(textStatus.responseText);
                     alert(XMLHttpRequest.status);
                 },
 
@@ -51,7 +48,7 @@
             return res;
         });
     </script>
--->
+
 </div>
 </body>
 </html>

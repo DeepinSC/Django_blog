@@ -16,29 +16,25 @@
 </head>
 <body>
 
-
-    <div>Title <input name="title"></div>
+<form id="form01" method="post" action="http://127.0.0.1:8000/api/blogs/">
+    {% csrf_token %}
+    <div>Title <input name="title" ></div>
     <div>Author <input name="author"></div>
     <div>Content <input name="content"></div>
     <div>Category <input name="category"></div>
     <div>Tag <input name="tag"></div>
-
-    <button class="btn-primary" id="b01" type="submit">Submit</button>
+    <button class="btn-primary" id="b01" type="button">Submit</button>
+</form>
 
     <script type="text/javascript">
         $("#b01").click(function(){
             $.ajax({
                 url:"http://127.0.0.1:8000/api/blogs/",
                 type:"POST",
-                data:{
-                    title:($('input[name="title"]').val()),
-                    author:($('input[name="author"]').val()),
-                    content:($('input[name="content"]').val()),
-                    category:($('input[name="category"]').val()),
-                    tag:($('input[name="tag"]').val()),
-                    csrfmiddlewaretoken:($('a[id="csrf"]').val())
-                },
+                dataType:"json",
+                data:$('#form01').serialize(),
                 success: function(return_value){
+                    alert("提交成功")
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status);
