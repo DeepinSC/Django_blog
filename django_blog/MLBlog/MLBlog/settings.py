@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'blogs',
 ]
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+
 }
 
 
@@ -64,7 +65,8 @@ ROOT_URLCONF = 'MLBlog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

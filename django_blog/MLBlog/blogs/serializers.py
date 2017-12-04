@@ -3,7 +3,7 @@ from models import Blogs
 from models import User
 
 class BlogsSerializer(serializers.HyperlinkedModelSerializer):
-    author = serializers.ReadOnlyField(source='author.username')
+    owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = Blogs
-        fields = ('id','url','title','author','content','category','tag','created_time','modify_time')
+        fields = ('url','id','title','content','category','tag','created_time','modify_time','owner')

@@ -13,6 +13,7 @@ from rest_framework import generics
 from serializers import BlogsSerializer
 # Create your views here.
 
+
 class BlogsViewSet(viewsets.ModelViewSet):
     queryset = Blogs.objects.all()
     serializer_class = BlogsSerializer
@@ -22,13 +23,13 @@ class BlogsViewSet(viewsets.ModelViewSet):
         return self.destroy(request, *args, **kwargs)
 
 @csrf_exempt
-def index(request):
-    return render(request,'blogs/index.html')
-
-@csrf_exempt
 def login(request):
     return render(request,'blogs/login.html')
 
 @csrf_exempt
 def blogs(request):
     return render(request,'blogs/blogs.html')
+
+@csrf_exempt
+def detail(request,pk):
+    return render(request,'blogs/detail.html')

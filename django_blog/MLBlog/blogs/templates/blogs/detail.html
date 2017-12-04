@@ -1,0 +1,50 @@
+{% extends "blogs/base.html" %}
+{% load static %}
+
+{%block head%}
+
+<script type="text/javascript" src="{% static 'common/blog-detail.js'%}"></script>
+<script type="text/javascript">
+    window.onload=function() {
+        var fun = get_blog_detail;
+        fun();
+    };
+
+</script>
+
+
+
+{% endblock %}
+
+
+{% block main %}
+{% csrf_token %}
+    <button class="btn btn-info" id="edit">Edit</button>
+    <button class="btn btn-danger" id="delete" data-toggle="modal" data-target="#myModal">Delete</button>
+{% endblock %}
+
+{% block extra%}
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					Danger!
+				</h4>
+			</div>
+			<div class="modal-body">
+				Do you really want to delete this Blog?
+                This operation is unrecoverable!
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-danger" id="btn01" onclick="delete_blog()" >Delete Anyway</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+{%endblock%}

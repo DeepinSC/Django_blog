@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Blogs(models.Model):
     title = models.CharField(max_length=100, default='')
     created_time = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     category = models.CharField(max_length=20)
     tag = models.CharField(max_length=20)
