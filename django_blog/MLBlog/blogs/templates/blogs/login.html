@@ -36,8 +36,8 @@
                 type:"POST",
                 dataType:"text",
                 data:$('#form01').serialize(),
-                success: function(return_value){
-                   window.location.href='http://www.baidu.com';
+                success: function(return_token){
+                    window.location.href='http://127.0.0.1:8000/blogs/';
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     console.log(textStatus.responseText);

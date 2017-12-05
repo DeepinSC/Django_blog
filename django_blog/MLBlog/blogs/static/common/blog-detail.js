@@ -66,14 +66,34 @@ function get_blog_detail(){
             blog_post_div.appendChild(document.createElement("hr"));
             blog_main_div.appendChild(blog_post_div);
 }
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '')
+    {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++)
+        {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) == (name + '='))
+            {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 function delete_blog(){
     var return_value;
         var id = get_id();
         $.ajax({
             async:false,
-            url:"http://127.0.0.1:8000/api/blog/"+id+"/",
+            url:"http://127.0.0.1:8000/api/blogs/"+id+"/",
             type:"DELETE",
             datatype:"json",
+            headers:{"X-CSRFToken":getCookie('csrftoken')},//这行重要！直接解决CSRF问题！
             success:function (data) {
              return_value = data;
              window.location.href='http://127.0.0.1:8000/blogs/';
@@ -87,3 +107,4 @@ function delete_blog(){
       });
         return return_value;
 }
+
