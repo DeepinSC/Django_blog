@@ -3,7 +3,7 @@ from rest_framework import routers
 import views
 
 router = routers.DefaultRouter()
-router.register(r'blog',views.BlogsViewSet)
+router.register(r'blogs',views.BlogsViewSet)
 urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^login/',views.login,name='login'),

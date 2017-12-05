@@ -17,10 +17,15 @@ from serializers import BlogsSerializer
 class BlogsViewSet(viewsets.ModelViewSet):
     queryset = Blogs.objects.all()
     serializer_class = BlogsSerializer
-    #permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+    
+    def perform_create(self, serializer):
+        serializer.save(owner = self.request.user)
+
+
 
 @csrf_exempt
 def login(request):

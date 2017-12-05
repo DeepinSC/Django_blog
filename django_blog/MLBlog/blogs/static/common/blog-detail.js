@@ -10,7 +10,7 @@ function get_data(){
         var id = get_id();
         $.ajax({
             async:false,
-            url:"http://127.0.0.1:8000/api/blog/"+id,
+            url:"http://127.0.0.1:8000/api/blogs/"+id,
             type:"GET",
             datatype:"json",
             success:function (data) {

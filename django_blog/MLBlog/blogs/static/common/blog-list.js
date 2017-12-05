@@ -3,7 +3,7 @@ function get_blog_list(){
             var return_value;
             $.ajax({
                 async:false,
-                url:"http://127.0.0.1:8000/api/blog/",
+                url:"http://127.0.0.1:8000/api/blogs/",
                 type:"GET",
                 datatype:"json",
                 success:function (data) {
