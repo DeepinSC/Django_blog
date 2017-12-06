@@ -1,4 +1,3 @@
-function get_blog_list(){
     function get_data(){
             var return_value;
             $.ajax({
@@ -18,6 +17,9 @@ function get_blog_list(){
           });
             return return_value;
 }
+
+function get_blog_list(){
+
     var blog_data = get_data();
     var blog_main_div = document.getElementById("blogs");
         for(var i=0;i<blog_data.length;i++){
@@ -57,4 +59,22 @@ function get_blog_list(){
             blog_post_div.appendChild(document.createElement("hr"));
             blog_main_div.appendChild(blog_post_div);
         }
+}
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '')
+    {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++)
+        {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) == (name + '='))
+            {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }

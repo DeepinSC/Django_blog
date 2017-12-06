@@ -36,10 +36,11 @@ def login(request):
 
 @csrf_exempt
 def blogs(request):
-    user = request.user
-    return render(request,'blogs/blogs.html',{"user":user,})
+    return render(request,'blogs/blogs.html')
 
 @csrf_exempt
 def detail(request,pk):
-    user = request.user
-    return render(request,'blogs/detail.html',{"user":user,})
+    return render(request,'blogs/detail.html')
+
+def edit(request,pk):
+    return render(request, 'blogs/edit.html')

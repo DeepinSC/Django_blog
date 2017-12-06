@@ -15,9 +15,6 @@
     <!-- Bootstrap core CSS -->
     <link href="{% static '/common/bootstrap.css' %}" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{% static '/common/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="{% static '/common/blog.css' %}" rel="stylesheet">
 
@@ -27,12 +24,13 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
+
+    {%block head %}{% endblock %}
     <script type="text/javascript" src="{% static 'common/get-login-state.js'%}"></script>
     <script type="text/javascript">
     window.addEventListener("load",get_login_state); //"事件监听"能绑定多个事件
     </script>
-
-    {%block head %}{% endblock %}
     </head>
 
   <body>
@@ -70,7 +68,6 @@
 
             <ul class="pager">
               <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
             </ul>
             {% endblock %}
           </nav>
