@@ -5,20 +5,11 @@
 
 <script type="text/javascript" src="{% static 'common/blog-detail.js'%}"></script>
 <script type="text/javascript">
-    window.onload=function() {
-        var fun = get_blog_detail;
-        fun();
-    };
-
-</script>
-
-
-
+    window.addEventListener("load",get_blog_detail);</script>
 {% endblock %}
 
 
 {% block main %}
-{% csrf_token %}
     <button class="btn btn-info" id="edit">Edit</button>
     <button class="btn btn-danger" id="delete" data-toggle="modal" data-target="#myModal">Delete</button>
 {% endblock %}

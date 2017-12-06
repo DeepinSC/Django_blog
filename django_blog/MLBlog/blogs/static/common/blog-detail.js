@@ -1,33 +1,34 @@
-function get_id(){
-    var url = window.location.href;
-    var ele = url.split("/");
-    var id = ele[ele.length-2];
-    return id;
-}
 
-function get_data(){
-        var return_value;
-        var id = get_id();
-        $.ajax({
-            async:false,
-            url:"http://127.0.0.1:8000/api/blogs/"+id,
-            type:"GET",
-            datatype:"json",
-            success:function (data) {
-             return_value = data;
-
-         },
-         error: function(XMLHttpRequest, textStatus, errorThrown) {
-              console.log(textStatus.responseText);
-              alert(XMLHttpRequest.status);
-          }
-
-      });
-        return return_value;
-}
 
 function get_blog_detail(){
 
+    function get_id(){
+        var url = window.location.href;
+        var ele = url.split("/");
+        var id = ele[ele.length-2];
+        return id;
+    }
+
+    function get_data(){
+            var return_value;
+            var id = get_id();
+            $.ajax({
+                async:false,
+                url:"/api/blogs/"+id,
+                type:"GET",
+                datatype:"json",
+                success:function (data) {
+                 return_value = data;
+
+             },
+             error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  console.log(textStatus.responseText);
+                  alert(XMLHttpRequest.status);
+              }
+
+          });
+            return return_value;
+    }
     var blog_data = get_data();
     var blog_main_div = document.getElementById("blogs");
             var blog_post_div = document.createElement("div");
@@ -36,7 +37,7 @@ function get_blog_detail(){
             var title = document.createElement("a");
             var id = blog_data.id;
             title.className = "blog-post-title";
-            title.href = "http://127.0.0.1:8000/blogs/"+id+"/";
+            title.href = "/blogs/"+id+"/";
             title.append(blog_data.title);
 
             var modify_time = document.createElement("p");
@@ -90,13 +91,13 @@ function delete_blog(){
         var id = get_id();
         $.ajax({
             async:false,
-            url:"http://127.0.0.1:8000/api/blogs/"+id+"/",
+            url:"/api/blogs/"+id+"/",
             type:"DELETE",
             datatype:"json",
             headers:{"X-CSRFToken":getCookie('csrftoken')},//这行重要！直接解决CSRF问题！
             success:function (data) {
              return_value = data;
-             window.location.href='http://127.0.0.1:8000/blogs/';
+             window.location.href='/blogs/';
 
          },
          error: function(XMLHttpRequest, textStatus, errorThrown) {

@@ -22,8 +22,6 @@ class BlogsViewSet(viewsets.ModelViewSet):
     #permission_classes = (permissions.IsOwnerOrReadOnly,)
     #authentication_classes = (SessionAuthentication, BasicAuthentication)
 
-
-
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 

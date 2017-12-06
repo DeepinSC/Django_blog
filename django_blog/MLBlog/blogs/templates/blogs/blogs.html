@@ -3,12 +3,7 @@
 
 {%block head%}
 <!-- here are blogs from db-->
-
 <script type="text/javascript" src="{% static 'common/blog-list.js'%}"></script>
 <script type="text/javascript">
-    window.onload=function() {
-        var fun = get_blog_list;
-        fun();
-    };
-</script>
+    window.addEventListener("load",get_blog_list);</script>
 {%endblock%}

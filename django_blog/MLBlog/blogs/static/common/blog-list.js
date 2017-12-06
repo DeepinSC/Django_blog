@@ -3,7 +3,7 @@ function get_blog_list(){
             var return_value;
             $.ajax({
                 async:false,
-                url:"http://127.0.0.1:8000/api/blogs/",
+                url:"/api/blogs/",
                 type:"GET",
                 datatype:"json",
                 success:function (data) {
@@ -27,7 +27,7 @@ function get_blog_list(){
             var title = document.createElement("a");
             var id = blog_data[i].id;
             title.className = "blog-post-title";
-            title.href = "http://127.0.0.1:8000/blogs/"+id+"/";
+            title.href = "/blogs/"+id+"/";
             title.append(blog_data[i].title);
 
             var modify_time = document.createElement("p");
