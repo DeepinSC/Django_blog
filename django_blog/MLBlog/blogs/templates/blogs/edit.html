@@ -2,58 +2,21 @@
 {%block head%}
 
 <link href="../../static/common/bootstrap-responsive.css" rel="stylesheet">
-<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
 <link href="../../static/common/index.css" rel="stylesheet">
 <link href="../../static/common/prettify.html" rel="stylesheet">
 
-
 <!--键盘事件-->
-<script src="http://mindmup.github.io/bootstrap-wysiwyg/external/jquery.hotkeys.js"></script>
-<script src="http://cdn.bootcss.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-<script src="../../static/common/bootstrap-wysiwyg.js"></script>
-
-
-<script type="text/javascript"></script>
-<script>
-  var init = function(){
-    function initToolbarBootstrapBindings() {
-      var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-            'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-            'Times New Roman', 'Verdana'],
-            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-      $.each(fonts, function (idx, fontName) {
-          fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
-      });
-      $('a[title]').tooltip({container:'body'});
-    	$('.dropdown-menu input').click(function() {return false;})
-		    .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
-        .keydown('esc', function () {this.value='';$(this).change();});
-
-      $('[data-role=magic-overlay]').each(function () {
-        var overlay = $(this), target = $(overlay.data('target'));
-        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-      });
-      $('#voiceBtn').hide();
-      // if ("onwebkitspeechchange"  in document.createElement("input")) {
-      //   var editorOffset = $('#editor').offset();
-      //   $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
-      // } else {
-      //   $('#voiceBtn').hide();
-      // }
-    };
-    initToolbarBootstrapBindings();
-    $('#editor').wysiwyg();
-    window.prettyPrint && prettyPrint();
-  };
-  window.addEventListener("load",init);
-</script>
 
 
 {% endblock %}
 
 
 {%block main%}
+    <br>
+    <!--Title -->
+        <div class="blog-post-title"> Title: <input id="title" class="blog-editor" style="width: 85%"> </div>
 
+    <!--Editor -->
      <div class="hero-unit">
     <hr>
     <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
@@ -65,9 +28,9 @@
       <div class="btn-group">
         <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
           <ul class="dropdown-menu">
-          <li><a data-edit="fontSize 5"><span style="font-size:5px">Huge</span></a></li>
-          <li><a data-edit="fontSize 3"><span style="font-size:3px">Normal</span></a></li>
-          <li><a data-edit="fontSize 1"><span style="font-size:1px">Small</span></a></li>
+          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
           </ul>
       </div>
       <div class="btn-group">
@@ -110,11 +73,66 @@
     </div>
 
     <div id="editor" contenteditable="true">
-      Go ahead…
     </div>
   </div>
 
+    <!--Category -->
+    <br>
+        <div class="blog-post-meta" style="display: inline"> Category: <input id="category" class="blog-editor" style="width: 15%"> </div>
+        <div class="blog-post-meta" style="display: inline"> Tag: <input id="tag" class="blog-editor" style="width: 15%"> </div>
 
+    <hr>
+    <div style="display: inline"><button id ="submit01" class="btn btn-success" onclick="submit_blog()"><i class="fa fa-check"></i> Submit</button></div>
+    <div style="display: inline"><button class="btn btn-primary" onclick="window.history.go(-1)"><i class="fa fa-close"></i> Cancel</button></div>
+    <hr>
+
+{%endblock%}
+{%block footer%}
+
+<script src="http://mindmup.github.io/bootstrap-wysiwyg/external/jquery.hotkeys.js"></script>
+<script src="http://cdn.bootcss.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="../../static/common/bootstrap-wysiwyg.js"></script>
+<script src="../../static/common/blog-detail.js"></script>
+
+    <script type="text/javascript">
+    //window.addEventListener("load",fill_editor); //"事件监听"能绑定多个事件
+
+
+    fill_editor();
+    var init = function(){
+    function initToolbarBootstrapBindings() {
+      var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
+            'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+            'Times New Roman', 'Verdana'],
+            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+      $.each(fonts, function (idx, fontName) {
+          fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
+      });
+      $('a[title]').tooltip({container:'body'});
+    	$('.dropdown-menu input').click(function() {return false;})
+		    .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
+        .keydown('esc', function () {this.value='';$(this).change();});
+
+      $('[data-role=magic-overlay]').each(function () {
+        var overlay = $(this), target = $(overlay.data('target'));
+        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+      });
+      $('#voiceBtn').hide();
+       if ("onwebkitspeechchange"  in document.createElement("input")) {
+         var editorOffset = $('#editor').offset();
+         $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
+       } else {
+         $('#voiceBtn').hide();
+       }
+    };
+    initToolbarBootstrapBindings();
+    $('#editor').wysiwyg();
+    window.prettyPrint && prettyPrint();
+  };
+
+  window.addEventListener("load",init);
+    //init();
+</script>
 
 
 {%endblock%}

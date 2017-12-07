@@ -3,15 +3,15 @@
 
 {%block head%}
 
-<script type="text/javascript" src="{% static 'common/blog-detail.js'%}"></script>
-<script type="text/javascript">
-    window.addEventListener("load",get_blog_detail);</script>
+
+
 {% endblock %}
 
 
 {% block main %}
-    <button class="btn btn-info" id="edit" onclick="window.location.href = to_edit()">Edit</button>
-    <button class="btn btn-danger" id="delete" data-toggle="modal" data-target="#myModal">Delete</button>
+    <button class="btn btn-info" id="edit" onclick="window.location.href = to_edit()"><i class="fa fa-edit"></i> Edit</button>
+    <button class="btn btn-danger" id="delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o"></i> Delete</button>
+<hr>
 {% endblock %}
 
 {% block extra%}
@@ -33,9 +33,19 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-danger" id="btn01" onclick="delete_blog()" >Delete Anyway</button>
+				<button type="button" class="btn btn-danger" id="btn01" >Delete Anyway</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
+{%endblock%}
+{% block footer%}
+<script type="text/javascript" src="{% static 'common/blog-detail.js'%}">
+    $("#btn01").addEventListener("click",delete_blog);
+</script>
+<script type="text/javascript">
+    get_blog_detail();
+    //$("#btn01").addEventListener("click",delete_blog);
+</script>
+
 {%endblock%}

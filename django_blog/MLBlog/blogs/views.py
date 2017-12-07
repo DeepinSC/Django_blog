@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.sessions.models import Session
+
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
@@ -11,6 +11,7 @@ from rest_framework import viewsets
 from models import Blogs
 from rest_framework import generics
 from serializers import BlogsSerializer
+import markdown
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 import permissions
 # Create your views here.
@@ -19,8 +20,6 @@ import permissions
 class BlogsViewSet(viewsets.ModelViewSet):
     queryset = Blogs.objects.all()
     serializer_class = BlogsSerializer
-    #permission_classes = (permissions.IsOwnerOrReadOnly,)
-    #authentication_classes = (SessionAuthentication, BasicAuthentication)
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)

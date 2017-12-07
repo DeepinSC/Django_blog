@@ -11,10 +11,10 @@
     <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
 
     <title>{% block title %}Blog Template for Bootstrap{% endblock %}</title>
-
+    <link href="{% static '/common/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="{% static '/common/bootstrap.css' %}" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="{% static '/common/blog.css' %}" rel="stylesheet">
 
@@ -24,10 +24,7 @@
     <script src="{% static '/common/bootstrap.js'%}"></script>
 
 
-    <script type="text/javascript" src="{% static 'common/get-login-state.js'%}"></script>
-    <script type="text/javascript">
-    window.addEventListener("load",get_login_state); //"事件监听"能绑定多个事件
-    </script>
+
     {%block head %}{% endblock %}
     </head>
 
@@ -39,7 +36,7 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item active" href="/blogs/">Home</a>
-          <a class="blog-nav-item" href="#">New features</a>
+          <a class="blog-nav-item" href="#">New Blog</a>
           <a class="blog-nav-item" href="#">Press</a>
           <a class="blog-nav-item" href="#">New hires</a>
           <a class="blog-nav-item" href="#">About</a>
@@ -113,11 +110,18 @@
 
     <footer class="blog-footer">
         {% block footer%}
+        {% endblock %}
       <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
         <a href="#">Back to top</a>
       </p>
-        {% endblock %}
+
+        <script type="text/javascript" src="{% static 'common/get-login-state.js' %}"></script>
+    <script type="text/javascript">
+    //window.addEventListener("load",get_login_state); //"事件监听"能绑定多个事件
+        get_login_state();
+    </script>
+
     </footer>
 
 

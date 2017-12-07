@@ -45,13 +45,20 @@ function get_login_state() {
 
         var signin = document.createElement("button");
         signin.className = "btn btn-info btn-sm";
-        signin.append("Sign In");
+        var icon = document.createElement("i");
+        icon.className = "fa fa-sign-in";
+        signin.appendChild(icon);
+        signin.append(" Sign In");
         signin.onclick = function () {
             window.location.href = "/login";
         };
+
         var signup = document.createElement("button");
         signup.className = "btn btn-default btn-sm";
-        signup.append("Sign Up");
+        icon = document.createElement("i");
+        icon.className = "fa fa-pencil-square-o";
+        signup.appendChild(icon);
+        signup.append(" Sign Up");
 
         container.appendChild(signin);
         container.appendChild(signup);
@@ -64,7 +71,10 @@ function get_login_state() {
 
         var signout = document.createElement("button");
         signout.className = "btn btn-primary btn-sm";
-        signout.append("Sign Out");
+        var icon = document.createElement("i");
+        icon.className = "fa fa-sign-out";
+        signout.appendChild(icon);
+        signout.append(" Sign Out");
         signout.onclick = function (ev) { sign_out(); };
 
         user_content_div.appendChild(title);
