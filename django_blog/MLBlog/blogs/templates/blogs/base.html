@@ -18,19 +18,17 @@
     <!-- Custom styles for this template -->
     <link href="{% static '/common/blog.css' %}" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    <script src="{% static '/common/jquery.js'%}"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{% static '/common/bootstrap.js'%}"></script>
 
 
-
-    {%block head %}{% endblock %}
     <script type="text/javascript" src="{% static 'common/get-login-state.js'%}"></script>
     <script type="text/javascript">
     window.addEventListener("load",get_login_state); //"事件监听"能绑定多个事件
     </script>
+    {%block head %}{% endblock %}
     </head>
 
   <body>
@@ -126,10 +124,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static '/common/jquery.js'%}"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="{% static '/common/bootstrap.js'%}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
 
 
