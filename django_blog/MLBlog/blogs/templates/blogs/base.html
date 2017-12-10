@@ -109,19 +109,18 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-        {% block footer%}
-        {% endblock %}
+
       <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
         <a href="#">Back to top</a>
       </p>
-
         <script type="text/javascript" src="{% static 'common/get-login-state.js' %}"></script>
-    <script type="text/javascript">
+        <script type="text/javascript">
     //window.addEventListener("load",get_login_state); //"事件监听"能绑定多个事件
         get_login_state();
-    </script>
-
+        </script>
+        {% block footer%}
+        {% endblock %}
     </footer>
 
 

@@ -3,7 +3,7 @@
 
 {%block head%}
 
-
+<script type="text/javascript" src="{% static 'common/blog-detail.js'%}"></script>
 
 {% endblock %}
 
@@ -33,19 +33,19 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-danger" id="btn01" >Delete Anyway</button>
+				<button type="button" class="btn btn-danger" id="btn01" onclick="delete_blog()">Delete Anyway</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
 {%endblock%}
 {% block footer%}
-<script type="text/javascript" src="{% static 'common/blog-detail.js'%}">
-    $("#btn01").addEventListener("click",delete_blog);
-</script>
+
+
+
 <script type="text/javascript">
-    get_blog_detail();
-    //$("#btn01").addEventListener("click",delete_blog);
+	get_blog_detail();
 </script>
+
 
 {%endblock%}

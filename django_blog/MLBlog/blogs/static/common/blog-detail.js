@@ -93,7 +93,7 @@ function getCookie(name) {
 //删除博客
 function delete_blog(){
     var return_value;
-        var id = get_id();
+        var id = get_id(window.location.href);
         $.ajax({
             async:false,
             url:"/api/blogs/"+id+"/",
@@ -121,7 +121,7 @@ function to_edit(){
     return window.location.href+"edit";
 }
 
-//载入数据到编辑页面
+//载入博客数据到编辑页面
 function fill_editor(){
     var blog_data = get_data();
     // 添加数据到标签
@@ -136,9 +136,8 @@ function fill_editor(){
 // 提交更改
 function submit_blog(){
     var blog_id = get_id(window.location.href);
-
     var blog_title = document.getElementById("title").value;
-    var blog_content = document.getElementById("editor").html();
+    var blog_content = $('#editor').html();
     var blog_category = document.getElementById("category").value;
     var blog_tag = document.getElementById("tag").value;
     var submit_json = {title: blog_title, content:blog_content,category:blog_category,tag:blog_tag};
@@ -148,8 +147,9 @@ function submit_blog(){
         dataType:"json",
         async:false,
         data:submit_json,
+        headers:{"X-CSRFToken":getCookie('csrftoken')},//这行重要！直接解决CSRF问题！
         success: function(return_value){
-                    alert(submit_json);
+                    window.location.href = '/blogs/';
                 },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status);
