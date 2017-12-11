@@ -11,6 +11,7 @@ from rest_framework import viewsets
 from models import Blogs
 from rest_framework import generics
 from serializers import BlogsSerializer
+from django.utils import timezone
 import markdown
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 import permissions
@@ -26,6 +27,11 @@ class BlogsViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner = self.request.user)
+
+    def perform_update(self, serializer):
+        serializer.save(owner = self.request.user,modify_time = timezone.now()) #更改时更新到当前时间
+
+
 
 
 

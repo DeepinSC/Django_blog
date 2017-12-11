@@ -52,7 +52,8 @@ function get_blog_detail(){
             modify_time.appendChild(owner);
 
             var content = document.createElement("div");
-            content.append(blog_data.content);
+            //content.append(blog_data.content);
+            $(content).html(blog_data.content); //显示格式
 
             var category = document.createElement("p");
             category.className = "blog-post-meta";
@@ -127,7 +128,8 @@ function fill_editor(){
     // 添加数据到标签
     if (blog_data!=null) {
         document.getElementById("title").value = blog_data.title;
-        document.getElementById("editor").append(blog_data.content);
+        //document.getElementById("editor").append(blog_data.content);
+        $(document.getElementById("editor")).html(blog_data.content);
         document.getElementById("category").value = blog_data.category;
         document.getElementById("tag").value = blog_data.tag;
     }
@@ -140,7 +142,8 @@ function submit_blog(){
     var blog_content = $('#editor').html();
     var blog_category = document.getElementById("category").value;
     var blog_tag = document.getElementById("tag").value;
-    var submit_json = {title: blog_title, content:blog_content,category:blog_category,tag:blog_tag};
+    var submit_json = {title: blog_title, content:blog_content,category:blog_category,
+        tag:blog_tag};
     $.ajax({
         url:"/api/blogs/"+blog_id+"/",
         type:"PUT",

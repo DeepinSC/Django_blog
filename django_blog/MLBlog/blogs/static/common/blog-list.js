@@ -41,7 +41,8 @@ function get_blog_list(){
             modify_time.appendChild(owner);
 
             var abstract = document.createElement("p");
-            abstract.append(blog_data[i].content.substring(0,250)+"...");
+            //abstract.append(blog_data[i].content.substring(0,250)+"...");
+            $(abstract).html(blog_data[i].content.substring(0,250)+"...");
 
             var category = document.createElement("p");
             category.className = "blog-post-meta";
