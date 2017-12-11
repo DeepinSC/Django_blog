@@ -49,3 +49,6 @@ def detail(request,pk):
 
 def edit(request,pk):
     return render(request, 'blogs/edit.html')
+
+def newblog(request):
+    return render(request, 'blogs/edit.html')

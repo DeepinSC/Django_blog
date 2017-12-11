@@ -35,8 +35,8 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="/blogs/">Home</a>
-          <a class="blog-nav-item" href="#">New Blog</a>
+          <a class="blog-nav-item active" id = "home" href="/blogs/">Home</a>
+          <a class="blog-nav-item" id ="new_blog"href="/blogs/new">New Blog</a>
           <a class="blog-nav-item" href="#">Press</a>
           <a class="blog-nav-item" href="#">New hires</a>
           <a class="blog-nav-item" href="#">About</a>
@@ -62,7 +62,7 @@
             {% block main %}
 
             <ul class="pager">
-              <li><a href="#">Previous</a></li>
+              <li><a href="/blogs/new">New Blog</a></li>
             </ul>
             {% endblock %}
           </nav>

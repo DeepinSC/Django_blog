@@ -45,16 +45,14 @@ function get_blog_detail(){
 
             var modify_time = document.createElement("p");
             modify_time.className = "blog-post-meta";
-            modify_time.append(blog_data.modify_time);
+            modify_time.append(time_tostring(blog_data.modify_time));
             modify_time.append(" by: ");
             var owner = document.createElement("a");
             owner.append(blog_data.owner);
             modify_time.appendChild(owner);
 
             var content = document.createElement("div");
-            //content.append(blog_data.content);
             $(content).html(blog_data.content); //显示格式
-
             var category = document.createElement("p");
             category.className = "blog-post-meta";
             category.append(blog_data.category);
@@ -124,39 +122,76 @@ function to_edit(){
 
 //载入博客数据到编辑页面
 function fill_editor(){
+    var url = window.location.href;
+    var ele = url.split("/");
+    var state = ele[ele.length-1];
+    if (state=="edit"){
     var blog_data = get_data();
     // 添加数据到标签
-    if (blog_data!=null) {
         document.getElementById("title").value = blog_data.title;
-        //document.getElementById("editor").append(blog_data.content);
         $(document.getElementById("editor")).html(blog_data.content);
         document.getElementById("category").value = blog_data.category;
         document.getElementById("tag").value = blog_data.tag;
+    }
+    else if (state=="new"){
+        var new_blog_button = document.getElementById("new_blog");
+        new_blog_button.className +=" active";
+        var home = document.getElementById("home");
+        home.className = "blog-nav-item";
     }
 }
 
 // 提交更改
 function submit_blog(){
-    var blog_id = get_id(window.location.href);
+    var url = window.location.href;
+    var ele = url.split("/");
+    var state = ele[ele.length-1];
+
     var blog_title = document.getElementById("title").value;
     var blog_content = $('#editor').html();
     var blog_category = document.getElementById("category").value;
     var blog_tag = document.getElementById("tag").value;
     var submit_json = {title: blog_title, content:blog_content,category:blog_category,
-        tag:blog_tag};
-    $.ajax({
-        url:"/api/blogs/"+blog_id+"/",
-        type:"PUT",
-        dataType:"json",
-        async:false,
-        data:submit_json,
-        headers:{"X-CSRFToken":getCookie('csrftoken')},//这行重要！直接解决CSRF问题！
-        success: function(return_value){
-                    window.location.href = '/blogs/';
-                },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest.status);
-        }
-    });
+            tag:blog_tag};
+    if (state=="edit"){
+        var blog_id = get_id(window.location.href);
+        $.ajax({
+            url:"/api/blogs/"+blog_id+"/",
+            type:"PUT",
+            dataType:"json",
+            async:false,
+            data:submit_json,
+            headers:{"X-CSRFToken":getCookie('csrftoken')},//这行重要！直接解决CSRF问题！
+            success: function(return_value){
+                        window.location.href = '/blogs/';
+                    },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+            }
+        });
+    }
+    else if(state=="new"){
 
+        $.ajax({
+            url:"/api/blogs/",
+            type:"POST",
+            dataType:"json",
+            async:false,
+            data:submit_json,
+            headers:{"X-CSRFToken":getCookie('csrftoken')},//这行重要！直接解决CSRF问题！
+            success: function(return_value){
+                        window.location.href = '/blogs/';
+                    },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status);
+            }
+        });
+    }
+
+}
+
+function time_tostring(str){
+    var date = str.split("T")[0];
+    var time = str.split("T")[1].split(".")[0];
+    return date + " " + time;
 }

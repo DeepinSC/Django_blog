@@ -149,6 +149,11 @@ h6, .h6 {
   color: #999;
 }
 
+#blogs img {
+    max-height: 80%;
+    max-width: 80%;
+  }
+
 
 /*
  * Footer

@@ -34,23 +34,23 @@ function get_blog_list(){
 
             var modify_time = document.createElement("p");
             modify_time.className = "blog-post-meta";
-            modify_time.append(blog_data[i].modify_time);
+            modify_time.append(time_tostring(blog_data[i].modify_time));
             modify_time.append(" by: ");
             var owner = document.createElement("a");
             owner.append(blog_data[i].owner);
             modify_time.appendChild(owner);
 
             var abstract = document.createElement("p");
-            //abstract.append(blog_data[i].content.substring(0,250)+"...");
-            $(abstract).html(blog_data[i].content.substring(0,250)+"...");
+            $(abstract).text(removeHTMLTag(blog_data[i].content).substring(0,250)+"...");
+
 
             var category = document.createElement("p");
             category.className = "blog-post-meta";
-            category.append(blog_data[i].category);
+            category.append("Category: "+blog_data[i].category);
 
             var tag = document.createElement("p");
             tag.className = "blog-post-meta";
-            tag.append(blog_data[i].tag);
+            tag.append("Tag: "+blog_data[i].tag);
 
             blog_post_div.appendChild(title);
             blog_post_div.appendChild(modify_time);
@@ -78,4 +78,17 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+function removeHTMLTag(str) {
+            str = str.replace(/<\/?[^>]*>/g,''); //去除HTML tag
+            str = str.replace(/[ | ]*\n/g,'\n'); //去除行尾空白
+            str = str.replace(/&[^;]*;/g,''); //去除&开头；结尾的html格式标签
+            return str;
+    }
+
+function time_tostring(str){
+    var date = str.split("T")[0];
+    var time = str.split("T")[1].split(".")[0];
+    return date + " " + time;
 }
