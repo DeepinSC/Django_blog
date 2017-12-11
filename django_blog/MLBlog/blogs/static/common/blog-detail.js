@@ -68,6 +68,12 @@ function get_blog_detail(){
             blog_post_div.appendChild(tag);
             blog_post_div.appendChild(document.createElement("hr"));
             blog_main_div.appendChild(blog_post_div);
+
+            // 权限部分，无权限不能编辑或者删除
+            if (blog_data.owner != is_login_or_username()){
+                document.getElementById("edit").disabled = true;
+                document.getElementById("delete").disabled = true;
+            }
 }
 
 function getCookie(name) {
@@ -117,6 +123,7 @@ function delete_blog(){
 
 //跳转至编辑页面
 function to_edit(){
+
     return window.location.href+"edit";
 }
 
@@ -139,6 +146,15 @@ function fill_editor(){
         var home = document.getElementById("home");
         home.className = "blog-nav-item";
     }
+    // 权限部分，无权限不能编辑
+            if (!is_login_or_username()){
+                document.getElementById("submit01").disabled = true;
+                document.getElementById("title").disabled = true;
+                $(document.getElementById("editor")).contenteditable = false;
+                document.getElementById("category").disabled = true;
+                document.getElementById("tag").disabled = true;
+            }
+
 }
 
 // 提交更改

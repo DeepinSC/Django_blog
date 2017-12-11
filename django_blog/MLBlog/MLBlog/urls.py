@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^', include('snippets.urls')),
     url(r'^',include('blogs.urls')),
     url(r'^api/rest-auth/',include('rest_auth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
 ]

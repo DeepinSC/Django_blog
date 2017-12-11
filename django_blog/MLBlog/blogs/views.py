@@ -8,19 +8,21 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from rest_framework import permissions, mixins, authentication
 from rest_framework.response import Response
 from rest_framework import viewsets
+
+from permissions import IsOwnerOrReadOnly
 from models import Blogs
 from rest_framework import generics
 from serializers import BlogsSerializer
 from django.utils import timezone
 import markdown
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-import permissions
 # Create your views here.
 
 
 class BlogsViewSet(viewsets.ModelViewSet):
     queryset = Blogs.objects.all()
     serializer_class = BlogsSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
@@ -29,7 +31,7 @@ class BlogsViewSet(viewsets.ModelViewSet):
         serializer.save(owner = self.request.user)
 
     def perform_update(self, serializer):
-        serializer.save(owner = self.request.user,modify_time = timezone.now()) #更改时更新到当前时间
+        serializer.save(modify_time = timezone.now()) #更改时更新到当前时间
 
 
 

@@ -44,7 +44,42 @@ INSTALLED_APPS = [
     'rest_auth',
     'snippets',
     'blogs',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.weibo',
+    'allauth.socialaccount.providers.github',
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+
+    'django.contrib.auth.backends.ModelBackend',
+
+# `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
+
+# Email setting
+
+EMAIL_HOST = 'smtp.126.com'
+EMAIL_HOST_USER = 'lthdqq'
+EMAIL_HOST_PASSWORD = '1996922'
+EMAIL_PORT = 25
+
+
+#EMAIL_USE_SSL = True
+#EMAIL_USE_TLS = True
+#
+DEFAULT_FROM_EMAIL = 'Rick-StarFall <noreply@rick-starfall.com>'
+
+SITE_ID = 1
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 

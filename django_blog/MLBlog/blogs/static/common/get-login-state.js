@@ -1,5 +1,4 @@
-function get_login_state() {
-    function is_login_or_username(){
+function is_login_or_username(){
         var return_state;
         $.ajax({
             async:false,
@@ -15,6 +14,9 @@ function get_login_state() {
         });
         return return_state;
     }
+
+function get_login_state() {
+
 
     function sign_out(){
         $.ajax({
@@ -39,6 +41,8 @@ function get_login_state() {
     // 如果未登录,提示用户登录
     if (state == false){
 
+        title.append("Welcome Anonymous user!");
+        title.appendChild(document.createElement("br"));
         title.append("Please Sign in or Sign up:");
 
         var container = document.createElement("div");
