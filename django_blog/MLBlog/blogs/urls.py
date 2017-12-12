@@ -6,7 +6,6 @@ router = routers.DefaultRouter()
 router.register(r'blogs',views.BlogsViewSet)
 urlpatterns = [
     url(r'^api/', include(router.urls)),
-    url(r'^login/',views.login,name='login'),
     url(r'^blogs/new',views.newblog,name='blogs'),
     url(r'^blogs/(?P<pk>[0-9]+)/edit',views.edit,name='edit'),
     url(r'^blogs/(?P<pk>[0-9]+)',views.detail,name='detail'),

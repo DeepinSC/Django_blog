@@ -54,7 +54,7 @@ function get_login_state() {
         signin.appendChild(icon);
         signin.append(" Sign In");
         signin.onclick = function () {
-            window.location.href = "/login";
+            window.location.href = "/accounts/login";
         };
 
         var signup = document.createElement("button");
@@ -63,6 +63,9 @@ function get_login_state() {
         icon.className = "fa fa-pencil-square-o";
         signup.appendChild(icon);
         signup.append(" Sign Up");
+        signup.onclick = function () {
+            window.location.href = "/accounts/signup";
+        };
 
         container.appendChild(signin);
         container.appendChild(signup);
@@ -79,9 +82,21 @@ function get_login_state() {
         icon.className = "fa fa-sign-out";
         signout.appendChild(icon);
         signout.append(" Sign Out");
-        signout.onclick = function (ev) { sign_out(); };
-
+        signout.onclick = function () {
+            window.location.href = "/accounts/logout";
+        };
+        var email = document.createElement("button");
+        email.className = "btn btn-success btn-sm";
+        var icon = document.createElement("i");
+        icon.className = "fa fa-envelope";
+        email.appendChild(icon);
+        email.append(" Email");
+        email.onclick = function () {
+            window.location.href = "/accounts/email";
+        };
         user_content_div.appendChild(title);
+        user_content_div.appendChild(email);
+        user_content_div.append(" ");
         user_content_div.appendChild(signout);
     }
 

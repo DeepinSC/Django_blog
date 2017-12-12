@@ -34,13 +34,6 @@ class BlogsViewSet(viewsets.ModelViewSet):
         serializer.save(modify_time = timezone.now()) #更改时更新到当前时间
 
 
-
-
-
-@csrf_exempt
-def login(request):
-    return render(request,'blogs/login.html')
-
 @csrf_exempt
 def blogs(request):
     return render(request,'blogs/blogs.html')

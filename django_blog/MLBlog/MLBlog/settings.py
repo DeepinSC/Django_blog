@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.weibo',
     'allauth.socialaccount.providers.github',
 ]
 
@@ -67,18 +66,21 @@ AUTHENTICATION_BACKENDS = (
 
 EMAIL_HOST = 'smtp.126.com'
 EMAIL_HOST_USER = 'lthdqq'
-EMAIL_HOST_PASSWORD = '1996922'
+EMAIL_HOST_PASSWORD = 'lth1996922'
 EMAIL_PORT = 25
 
+ACCOUNT_LOGOUT_REDIRECT_URL ="/blogs"
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/blogs"
 
 #EMAIL_USE_SSL = True
 #EMAIL_USE_TLS = True
 #
-DEFAULT_FROM_EMAIL = 'Rick-StarFall <noreply@rick-starfall.com>'
+DEFAULT_FROM_EMAIL = 'Django_rest_blog Rick <lthdqq@126.com>'
 
 SITE_ID = 1
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
+
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
