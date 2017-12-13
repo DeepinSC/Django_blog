@@ -9,10 +9,10 @@ from rest_framework import permissions, mixins, authentication
 from rest_framework.response import Response
 from rest_framework import viewsets
 
-from permissions import IsOwnerOrReadOnly
-from models import Blogs
+from .permissions import IsOwnerOrReadOnly
+from .models import Blogs
 from rest_framework import generics
-from serializers import BlogsSerializer
+from .serializers import BlogsSerializer
 from django.utils import timezone
 import markdown
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication

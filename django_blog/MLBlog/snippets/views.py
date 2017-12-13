@@ -6,9 +6,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status, renderers
 from rest_framework.reverse import reverse
-from permissons import IsOwnerOrReadOnly
-from models import Snippets
-from serializers import SnippetSerializer,UserSerializer
+from .permissons import IsOwnerOrReadOnly
+from .models import Snippets
+from .serializers import SnippetSerializer,UserSerializer
 
 # Create your views here.
 

@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from models import Blogs
-from models import User
+from .models import Blogs
+from .models import User
 
 class BlogsSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')

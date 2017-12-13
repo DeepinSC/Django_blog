@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import STYLE_CHOICES,LANGUAGE_CHOICES,Snippets
+from .models import STYLE_CHOICES,LANGUAGE_CHOICES,Snippets
 from django.contrib.auth.models import User
 
 

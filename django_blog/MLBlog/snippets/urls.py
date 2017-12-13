@@ -1,7 +1,7 @@
 from django.conf.urls import url
-import views
+from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
-from views import SnippetViewSet,UserViewSet,api_root
+from .views import SnippetViewSet,UserViewSet,api_root
 from django.conf.urls import include
 from rest_framework import renderers
 from rest_framework.routers import DefaultRouter
